@@ -25,7 +25,6 @@ const fetchWordData = (word) =>{
     .then(data => {
         console.log(data[0]);
         const mainObj = data[0];
-        console.log(mainObj.phonetics);
         outPutArea.innerHTML = `
         <h4>Word :  <span>${mainObj.word}</span></h4>
         <h4 >Phonetic :  <span>${mainObj.phonetic}</span></h4>
@@ -34,16 +33,19 @@ const fetchWordData = (word) =>{
         <div id="defiUl">
             <ul id="addDefinitions"></ul>
         </div>
-        <h4>Example: <span>Our second goal of the match! Yes!</span></h4>
+        <h4>Example: </h4>
+        <div>
+            <ul id="addExamples"></ul>
+        </div>
         `;
         addDefinitions("addDefinitions",mainObj.meanings);
+        addExamples("addExamples",mainObj.meanings);
     });
 }
 
 
 const addDefinitions = (id,defiObj) =>{
-    const addDefinitions = document.getElementById("addDefinitions");
-    console.log(defiObj);
+    const addDefinitions = document.getElementById(id);
     for (let i = 0; i < defiObj.length; i++) {
         const definitionsArr = defiObj[i];
         const arr = definitionsArr.definitions;
@@ -53,6 +55,22 @@ const addDefinitions = (id,defiObj) =>{
             const li = document.createElement('li');
             li.innerText = definition;
             addDefinitions.appendChild(li);
+        }
+    }
+}
+const addExamples = (id,defiObj) =>{
+    const addDefinitions = document.getElementById(id);
+    for (let i = 0; i < defiObj.length; i++) {
+        const definitionsArr = defiObj[i];
+        const arr = definitionsArr.definitions;
+        for (let i = 0; i < arr.length; i++) {
+            const element = arr[i];
+            const {example} = element;
+            if(example){
+            const li = document.createElement('li');
+            li.innerText = example;
+            addDefinitions.appendChild(li);
+            }
         }
     }
 }
