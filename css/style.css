@@ -1,5 +1,5 @@
 .bg-main {
-    height: 100vh;
+    min-height: 150vh;
     width: 100%;
 
 
@@ -17,11 +17,11 @@
 .input-area{
     padding: 15px;
 }
-.output-area{
+#output-area{
     padding-left: 15px;
     color: #fff;
 }
-.output-area h4{
+#output-area h4{
     margin-bottom: 15px;
 }
 
