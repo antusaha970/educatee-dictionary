@@ -23,7 +23,6 @@ const fetchWordData = (word) => {
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data[0]);
             const mainObj = data[0];
             outPutArea.innerHTML = `
         <h4>Word :  <span>${mainObj.word}</span></h4>
